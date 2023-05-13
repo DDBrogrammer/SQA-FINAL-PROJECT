@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <div class="content" >
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Banner list</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                            <li class="breadcrumb-item active">Banner page</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div th:if="${failed!=null}" class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                    <div th:text="${failed}"></div>
+                </div>
+
+                <div th:if="${success!=null}" class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                    <div th:text="${success}"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="btn btn-primary" th:href="@{/admin/banner/add}" role="button"> Add new banner </a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">ID</th>
+                                <th>Thumbnail</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr th:each="banner:${listBannerPage.iterator()}">
+                                <td th:text="${banner.getId()}"></td>
+                                <th>
+                                    <img height="100px" width="100px" th:src="'/uploads/'+@{${banner.getPicture()}}"/>
+                                </th>
+                                <th th:text="${banner.getName()}"></th>
+
+
+                                <th>
+                                    <div th:if="${banner.getOrder==1}" class="badge badge-success">1th</div>
+                                    <div th:if="${banner.getOrder==2}" class="badge badge-danger">2th</div>
+                                    <div th:if="${banner.getOrder==3}" class="badge badge-success">3th</div>
+                                    <div th:if="${banner.getOrder==0}" class="badge badge-danger">Dont use</div>
+
+
+                                </th>
+
+                                <td>
+                                    <a class="btn btn-danger" style="margin-top: 3px;"
+                                       onclick="return confirm('Are you sure you want to delete it ?')"
+                                       th:href="@{/admin/banner/delete(id=${banner.getId()})}">Delete</a>
+                                    <a class="btn btn-warning" style="margin-top: 3px;"
+                                       th:href="@{/admin/banner/edit(id=${banner.getId()})}">Edit</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- /.card-body -->
+                    <div th:if="${listBannerPage.getTotalPages()>1}" class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li th:each="pageNumber:${#numbers.sequence(0, listBannerPage.getTotalPages()-1)}"
+                                th:attr="class=${listBannerPage.getActivePage()==pageNumber ? 'active page-item' : 'page-item'}">
+                                <a class="page-link" th:href="@{/admin/product/list(page=${pageNumber})}"
+                                   th:text="${pageNumber}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <nav aria-label="Page navigation example" th:if="${listBannerPage.getTotalPages()>1}">
+                <ul class="pagination">
+                    <li class="page-item" ><a class="page-link" th:href="@{/admin/banner/list(page=${activePage-1})}">Previous</a></li>
+                    <li class="page-item" th:each="pageNumber:${#numbers.sequence(0, listBannerPage.getTotalPages()-1)}"
+                        th:attr="class=${activePage==pageNumber ? 'active page-item' : 'page-item'}">
+
+
+                        <a class="page-link"  th:href="@{/admin/banner/list(page=${pageNumber})}" th:text="${pageNumber}"></a>
+
+
+                    </li>
+                    <li class="page-item"><a class="page-link" th:href="@{/admin/banner/list(page=${activePage+1})}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+
+
+
+        <!-- /.container-fluid -->
+    </div>
+
+
+</div>
+

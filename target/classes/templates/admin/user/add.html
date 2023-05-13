@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <div class="content">
+        <div th:if="${failed!=null}" class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+            <div th:text="${failed}"></div>
+        </div>
+
+        <div th:if="${success!=null}" class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-check"></i> Alert!</h5>
+            <div th:text="${success}"></div>
+        </div>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">User </h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/admin/user/list}">User list</a></li>
+                            <li class="breadcrumb-item active">Add</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <form method="POST" th:action="@{/admin/user/do-add}" th:object="${user}">
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label>FullName</label>
+                        <input type="text" th:field="*{fullName}" class="form-control" placeholder="Enter FullName">
+                    </div>
+
+                    <label>Email address</label>
+                    <input type="email" th:field="*{email}" class="form-control" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" placeholder="Enter Password">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" th:field="*{address}" class="form-control" placeholder="Enter Address">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" th:field="*{phoneNumber}" class="form-control" placeholder="Enter Phone Number">
+                </div>
+
+              <!--  <div class="form-group">
+                    <label>Role</label>
+                    <select th:field="*{role}" class="form-control">
+                        <option value="1">Client</option>
+                        <option value="2">Admin</option>
+                    </select>
+                </div>-->
+                <div class="form-group" >
+                    <label>Roles:
+                        <input type="checkbox" name="roles"
+                               th:each="role : ${roles}"
+                               th:text="${role.getFeName()}"
+                               th:value="${role.getId()}"
+                               th:field="*{userRoles}"
+                        />
+                    </label>
+
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+
+
+
+
+        <!-- /.container-fluid -->
+    </div>
+
+
+</div>
+

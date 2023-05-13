@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{client/layout}">
+<div layout:fragment="app-content">
+
+    <div class="u-s-p-y-60">
+
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="container">
+                <div class="breadcrumb">
+                    <div class="breadcrumb__wrap">
+                        <ul class="breadcrumb__list">
+                            <li class="has-separator">
+
+                                <a th:href="@{/client/home}">Home</a></li>
+                            <li class="is-marked">
+
+                                <a href="checkout.html">Checkout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="u-s-p-b-60">
+
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="container">
+                <div class="checkout-f">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1 class="checkout-f__h1">ORDER SUMMARY</h1>
+
+                            <!--====== Order Summary ======-->
+                            <div class="o-summary">
+                                <div class="o-summary__section u-s-m-b-30">
+                                    <div class="o-summary__item-wrap gl-scroll">
+
+                                    </div>
+                                </div>
+
+                                <div class="o-summary__section u-s-m-b-30">
+                                    <div class="o-summary__box">
+                                        <table class="o-summary__table">
+                                            <tbody>
+
+                                            <tr>
+                                                <td>TAX</td>
+                                                <td class="tax">$0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SUBTOTAL</td>
+                                                <td class="subtotal" >$379.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GRAND TOTAL</td>
+                                                <td class="total">$379.00</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--====== End - Order Summary ======-->
+                            <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>
+                            <form class="checkout-f__delivery" th:action="@{/do-checkout}" method="post"  >
+                                <div class="u-s-m-b-30">
+                                    <div class="u-s-m-b-15">
+
+                                        <!--====== Check Box ======-->
+
+                                        <!--====== End - Check Box ======-->
+                                    </div>
+
+                                    <!--====== First Name, Last Name ======-->
+                                    <div class="gl-inline">
+                                        <div class="u-s-m-b-15">
+
+                                            <label class="gl-label" for="billing-fname">ADDRESS</label>
+
+                                            <input class="input-text input-text--primary-style" type="text" id="billing-fname" data-bill="" placeholder="House name and street name" name="address"  ></div>
+
+                                    </div>
+
+                                 <!--   <div class="u-s-m-b-15">
+
+                                        <label class="gl-label" for="billing-street">STREET ADDRESS *</label>
+
+                                        <input class="input-text input-text&#45;&#45;primary-style" type="text" id="billing-street" placeholder="House name and street name" data-bill=""></div>
+                                    <div class="u-s-m-b-15">
+
+                                        <label for="billing-street-optional"></label>
+
+                                        <input class="input-text input-text&#45;&#45;primary-style" type="text" id="billing-street-optional" placeholder="Apartment, suite unit etc. (optional)" data-bill=""></div>-->
+
+                                    <div class="u-s-m-b-10">
+
+                                        <!--====== Check Box ======-->
+                                        <div class="check-box">
+
+                                            <input type="checkbox" id="make-default-address" data-bill="" >
+
+                                        </div>
+                                        <!--====== End - Check Box ======-->
+                                    </div>
+
+
+
+                                    <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button>
+                                </div>
+                            </form     >
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="o-summary__section u-s-m-b-30">
+                                <div class="o-summary__box">
+                                    <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
+                                    <form class="checkout-f__payment">
+                                        <div class="u-s-m-b-10">
+
+                                            <!--====== Radio Box ======-->
+                                            <div class="radio-box">
+
+                                                <input type="radio" id="cash-on-delivery" name="payment">
+                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                    <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label></div>
+                                            </div>
+                                            <!--====== End - Radio Box ======-->
+
+                                            <span class="gl-text u-s-m-t-6">Pay Upon Cash on delivery. (This service is only available for some countries)</span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Content ======-->
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</html>

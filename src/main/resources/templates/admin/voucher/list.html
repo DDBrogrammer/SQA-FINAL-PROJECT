@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <!--  <div class="content">-->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Voucher list</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                        <li class="breadcrumb-item active">Voucher page</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <!--table -->
+        <div class="col-12">
+            <div th:if="${failed!=null}" class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                <div th:text="${failed}"></div>
+            </div>
+
+            <div th:if="${success!=null}" class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                <div th:text="${success}"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+
+                    <a class="btn btn-primary" th:href="@{/admin/voucher/add}" role="button"> Add new voucher </a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">ID</th>
+                            <th>Name</th>
+                            <th>Sale Percentage</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="voucher:${listVoucherPage.iterator()}">
+                            <td th:text="${voucher.getId()}"></td>
+                            <td th:text="${voucher.getName()}"></td>
+                            <td th:text="${voucher.getSalePercentage()}"></td>
+                            <td>
+                                <div th:if="${voucher.status==0}">Inactive</div>
+                                <div th:if="${voucher.status==1}">Active</div>
+                            </td>
+                            <td>
+                                <a style="margin-top:5px;" class="btn btn-danger"
+                                   onclick="return confirm('Are you sure you want to delete it ?')"
+                                   th:href="@{/admin/voucher/delete(id=${voucher.getId()})}">Delete</a>
+                                <a class="btn btn-warning" th:href="@{/admin/voucher/edit(id=${voucher.getId()})}"
+                                   style="margin-top:5px;">Edit</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+        <nav aria-label="Page navigation example" th:if="${listVoucherPage.getTotalPages()>1}">
+            <ul class="pagination">
+                <li class="page-item" ><a class="page-link" th:href="@{/admin/voucher/list(page=${activePage-1})}">Previous</a></li>
+                <li class="page-item" th:each="pageNumber:${#numbers.sequence(0, listVoucherPage.getTotalPages()-1)}"
+                    th:attr="class=${activePage==pageNumber ? 'active page-item' : 'page-item'}">
+
+
+                    <a class="page-link"  th:href="@{/admin/voucher/list(page=${pageNumber})}" th:text="${pageNumber}"></a>
+
+
+                </li>
+                <li class="page-item"><a class="page-link" th:href="@{/admin/voucher/list(page=${activePage+1})}">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+

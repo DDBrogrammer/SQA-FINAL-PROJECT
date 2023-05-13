@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <!--  <div class="content">-->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Order list</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                        <li class="breadcrumb-item active">Order page</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <!--table -->
+        <div class="col-12">
+            <div th:if="${failed!=null}" class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                <div th:text="${failed}"></div>
+            </div>
+
+            <div th:if="${success!=null}" class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                <div th:text="${success}"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+
+                    <a class="btn btn-primary"  role="button"> Add new order</a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">ID</th>
+                            <th>User ID</th>
+                            <th>Date</th>
+                            <th>Received address</th>
+                            <th>Total bill</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="order:${listOrderPage.iterator()}">
+                            <td th:text="${order.getId()}"></td>
+                            <td th:text="${order.getUserId()}"></td>
+                            <td th:text="${order.getOrderDate()}"></td>
+                            <td th:text="${order.getReceivedAddress()}"></td>
+                            <td >
+                                $ <span th:text="${#numbers.formatDecimal(order.getTotal(), 3,2,'COMMA')}"></span>
+                            </td>
+                            <td >
+                                <div th:if="${order.getStatus==1}" class="badge badge-primary">New</div>
+                                <div th:if="${order.getStatus==2}" class="badge badge-dark">Confirmed</div>
+                                <div th:if="${order.getStatus==3}" class="badge badge-warning">Shipping</div>
+                                <div th:if="${order.getStatus==4}" class="badge badge-success">Completed</div>
+                                <div th:if="${order.getStatus==5}" class="badge badge-danger">Cancelled</div>
+
+
+                            </td>
+                            <td>
+                                <a style="margin-top:5px;" class="btn btn-danger" th:href="@{/admin/order/show_detail(id=${order.getId()})}">See detail</a>
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- /.card-body -->
+
+            </div>
+
+        </div>
+        <!-- end table-->
+
+        <!-- old paging-->
+        <!--    <div th:if="${listUserPage.getTotalPages()>=0}">
+                <ul>
+                    <li th:each="pageNumber:${#numbers.sequence(0, listUserPage.getTotalPages()-1)}"
+                        th:attr="class=${activePage==pageNumber ? 'active page-item' : 'page-item'}">
+                        <a class="page-link" th:href="@{/admin/user/list(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                    </li>
+                </ul>
+            </div>-->
+        <!--  new paging-->
+
+     <!--   doing-->
+        <nav aria-label="Page navigation example" th:if="${listOrderPage.getTotalPages()>1}">
+            <ul class="pagination">
+                <li class="page-item" ><a class="page-link" th:href="@{/admin/order/list(page=${activePage-1})}">Previous</a></li>
+                <li class="page-item" th:each="pageNumber:${#numbers.sequence(0, listOrderPage.getTotalPages()-1)}"
+                    th:attr="class=${activePage==pageNumber ? 'active page-item' : 'page-item'}">
+
+
+                    <a class="page-link"  th:href="@{/admin/order/list(page=${pageNumber})}" th:text="${pageNumber}"></a>
+
+
+                </li>
+                <li class="page-item"><a class="page-link" th:href="@{/admin/order/list(page=${activePage+1})}">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <!--   </div>-->
+
+
+</div>
+

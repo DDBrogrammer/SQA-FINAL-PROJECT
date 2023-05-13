@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <div class="content" >
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Admin Homepage</h1>
+                    </div><!-- /.col -->
+                   <!-- <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
+                    </div>--><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>Users</h3>
+
+                            <p th:text="${totalUser}">10</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <a th:href="@{/admin/user/list}" class="small-box-footer">
+                            Show List  <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>Orders</h3>
+                            <p th:text="${totalOrder}"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <a th:href="@{/admin/order/list}" class="small-box-footer">
+                            Show List <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>Products</h3>
+
+                            <p th:text="${totalProduct}"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <a th:href="@{/admin/product/list}" class="small-box-footer">
+                            Show List  <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>Category</h3>
+
+                            <p th:text="${totalCategory}"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <a th:href="@{/admin/category/list}" class="small-box-footer">
+                            Show List  <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>Type</h3>
+
+                            <p th:text="${totalProductType}"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-bars "></i>
+                        </div>
+                        <a th:href="@{/admin/type/list}" class="small-box-footer">
+                            Show List  <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>Voucher</h3>
+
+                            <p th:text="${totalVoucher}"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-bars "></i>
+                        </div>
+                        <a th:href="@{/admin/voucher/list}" class="small-box-footer">
+                            Show List  <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>Banners</h3>
+                            <p>Use 3 picture</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a th:href="@{/admin/banner/list}" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- /.container-fluid -->
+    </div>
+
+
+</div>
+

@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{client/layout}"
+>
+
+<div layout:fragment="app-content">
+    <div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
+        <div class="owl-carousel primary-style-1 owl-loaded owl-drag" id="hero-slider">
+            <div class="owl-stage-outer">
+                <div class="owl-stage"
+                     style="transform: translate3d(-2821px, 0px, 0px); transition: all 1.5s ease 0s; width: 6585px;">
+                    <div class="owl-item cloned" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--2"
+                             th:style="'background-image:url(/uploads/'+@{${banner_2.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--3"
+                             th:style="'background-image:url(/uploads/'+@{${banner_3.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--1"
+                             th:style="'background-image:url(/uploads/'+@{${banner_1.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item active" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--2"
+                             th:style="'background-image:url(/uploads/'+@{${banner_2.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--3"
+                             th:style="'background-image:url(/uploads/'+@{${banner_3.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--1"
+                             th:style="'background-image:url(/uploads/'+@{${banner_1.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 941.6px; margin-right: -1px;">
+                        <div class="hero-slide hero-slide--2"
+                             th:style="'background-image:url(/uploads/'+@{${banner_2.getPicture()}}+')!important;'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider-content slider-content--animation">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-nav disabled">
+                <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
+                <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+            </div>
+            <div class="owl-dots disabled"></div>
+        </div>
+    </div>
+    <div class="u-s-p-b-60">
+        <!--====== Section Intro ======-->
+        <div class="section__intro u-s-m-b-16">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section__text-wrap">
+                            <h1 class="section__heading u-c-secondary u-s-m-b-12">New Products</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Intro ======-->
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter__grid-wrapper u-s-m-t-30" style="position: relative; height: 1134.9px;">
+                            <div class="row">
+                                <div th:each="product:${listNewProduct}"
+                                     class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item headphone"
+                                     style="position: absolute; left: 0px; top: 0px;">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                               href="product-detail.html">
+
+                                                <img class="aspect__img" th:src="'/uploads/'+@{${product.getPicture()}}"
+                                                     alt=""></a>
+                                            <div class="product-o__action-wrap">
+                                                <ul class="product-o__action-list">
+
+                                                    <li>
+
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="Product Detail"
+                                                           th:href="@{/client/product/detail(id=${product.getId()})}"><i
+                                                                class="fas fa-search-plus"></i></a></li>
+                                                    <li>
+
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" data-original-title="Add to Cart"
+                                                           th:attr="onclick=|addToCart('${product.getId()}',1)|">
+
+                                                            <i class="fas  fa-cart-plus">
+                                                            </i>
+
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <span class="product-o__category">
+
+                                                    <a th:href="@{/client/category/product(id=${product.getCategory().getId()})}"
+                                                       th:text="${product.getCategory().getName()}"></a></span>
+
+                                        <span class="product-o__name">
+
+                                                    <a th:href="@{/client/product/detail(id=${product.getId()})}"
+                                                       th:text="${product.getName()}"></a></span>
+
+                                        <span class="product-o__price">
+                                            <div th:if="${product.getVoucher()!=null}">
+                                                    <div th:text="'$'+${product.getPrice()-(product.getVoucher().getSalePercentage()*product.getPrice())/100}"
+                                                         style="display:inline-block;"> </div>
+                                              <span class="product-o__discount" th:if="${product.getVoucher().getSalePercentage()>0}"
+                                                    th:text="'$'+${product.getPrice()}"
+                                                    style="display:inline-block;"> </span>
+                                            </div>
+
+                                            <div th:if="${product.getVoucher()==null}">
+                                                    <div th:text="'$'+${product.getPrice()}"
+                                                         style="display:inline-block;"> </div>
+                                            </div>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Content ======-->
+    </div>
+
+    <div class="u-s-p-b-60">
+        <!--====== Section Intro ======-->
+        <div class="section__intro u-s-m-b-16">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section__text-wrap">
+                            <h1 class="section__heading u-c-secondary u-s-m-b-12">Sale Products</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Intro ======-->
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter__grid-wrapper u-s-m-t-30" style="position: relative; height: 1134.9px;">
+                            <div class="row">
+                                <div th:each="product:${listSaleProduct}"
+                                     class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item headphone"
+                                     style="position: absolute; left: 0px; top: 0px;">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                               href="product-detail.html">
+
+                                                <img class="aspect__img" th:src="'/uploads/'+@{${product.getPicture()}}"
+                                                     alt=""></a>
+                                            <div class="product-o__action-wrap">
+                                                <ul class="product-o__action-list">
+                                                    <li>
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="Product Detail"
+                                                           th:href="@{/client/product/detail(id=${product.getId()})}"><i
+                                                                class="fas fa-search-plus"></i></a></li>
+                                                    <li>
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" data-original-title="Add to Cart"
+                                                           th:attr="onclick=|addToCart('${product.getId()}',1)|">
+                                                            <i class="fas  fa-cart-plus">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <span class="product-o__category">
+
+                                                    <a th:href="@{/client/category/product(id=${product.getCategory().getId()})}"
+                                                       th:text="${product.getCategory().getName()}">Electronics</a></span>
+
+                                        <span class="product-o__name">
+
+                                                    <a th:href="@{/client/product/detail(id=${product.getId()})}"
+                                                       th:text="${product.getName()}">Red Wireless Headphone</a></span>
+                                        <span class="product-o__price">
+                                            <div th:if="${product.getVoucher()!=null}">
+                                                    <div th:text="'$'+${product.getPrice()-(product.getVoucher().getSalePercentage()*product.getPrice())/100}"
+                                                         style="display:inline-block;"> </div>
+                                              <span class="product-o__discount" th:if="${product.getVoucher().getSalePercentage()>0}"
+                                                    th:text="'$'+${product.getPrice()}"
+                                                    style="display:inline-block;"> </span>
+                                            </div>
+
+                                            <div th:if="${product.getVoucher()==null}">
+                                                    <div th:text="'$'+${product.getPrice()}"
+                                                         style="display:inline-block;"> </div>
+                                            </div>
+
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Content ======-->
+    </div>
+
+    <div class="u-s-p-b-60">
+        <!--====== Section Intro ======-->
+        <div class="section__intro u-s-m-b-16">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section__text-wrap">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Intro ======-->
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter__grid-wrapper u-s-m-t-30" style="position: relative; height: 1134.9px;">
+                            <div class="row">
+                                <div th:each="product:${listSuggestProduct}"
+                                     class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item headphone"
+                                     style="position: absolute; left: 0px; top: 0px;">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                               href="product-detail.html">
+
+                                                <img class="aspect__img" th:src="'/uploads/'+@{${product.getPicture()}}"
+                                                     alt=""></a>
+                                            <div class="product-o__action-wrap">
+                                                <ul class="product-o__action-list">
+
+                                                    <li>
+
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="Product Detail"
+                                                           th:href="@{/client/product/detail(id=${product.getId()})}"><i
+                                                                class="fas fa-search-plus"></i></a></li>
+                                                    <li>
+
+                                                        <a data-modal="modal" data-tooltip="tooltip"
+                                                           data-placement="top" data-original-title="Add to Cart"
+                                                           th:attr="onclick=|addToCart('${product.getId()}',1)|">
+
+
+                                                            <i class="fas  fa-cart-plus">
+                                                            </i>
+
+
+                                                        </a>
+
+
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <span class="product-o__category">
+
+                                                    <a th:href="@{/client/category/product(id=${product.getCategory().getId()})}"
+                                                       th:text="${product.getCategory().getName()}">Electronics</a></span>
+
+                                        <span class="product-o__name">
+
+                                                    <a th:href="@{/client/product/detail(id=${product.getId()})}"
+                                                       th:text="${product.getName()}">Red Wireless Headphone</a></span>
+                                        <!-- <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+
+                                             <span class="product-o__review">(23)</span></div>-->
+
+                                        <span class="product-o__price">
+                                            <div th:if="${product.getVoucher()!=null}">
+                                                    <div th:text="'$'+${product.getPrice()-(product.getVoucher().getSalePercentage()*product.getPrice())/100}"
+                                                         style="display:inline-block;"> </div>
+                                              <span class="product-o__discount" th:if="${product.getVoucher().getSalePercentage()>0}"
+                                                    th:text="'$'+${product.getPrice()}"
+                                                    style="display:inline-block;"> </span>
+                                            </div>
+
+                                            <div th:if="${product.getVoucher()==null}">
+                                                    <div th:text="'$'+${product.getPrice()}"
+                                                         style="display:inline-block;"> </div>
+                                            </div>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section Content ======-->
+    </div>
+
+</div>
+

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 th:text="'#'+${order.getId()}"></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{/admin/order/list}">Order list</a></li>
+                        <li class="breadcrumb-item active">Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+
+
+                    <!-- Main content -->
+                    <div class="invoice p-3 mb-3">
+                        <!-- title row -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>
+                                    <i class="fas fa-file-invoice-dollar"></i> Order
+                                    <small class="float-right" th:text="'Time: '+${order.getOrderDate()}">Date: 2/10/2014</small>
+                                </h4>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- info row -->
+                        <div class="row invoice-info">
+                            <div class="col-sm-4 invoice-col">
+                                From
+                                <address>
+                                    <strong th:text="' '+${user.getFullName()}">Admin, Inc.</strong>
+                                    <p style="margin-bottom:0; " th:text="'Email: '+${user.getEmail()}"> 795 Folsom Ave, Suite 600</p>
+                                    <p style="margin-bottom:0; " th:text="'Tel: '+${user.getPhoneNumber()}"> 795 Folsom Ave, Suite 600</p>
+                                    <p style="margin-bottom:0; " th:text="'Address: '+${user.getAddress()}"> 795 Folsom Ave, Suite 600</p>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+
+                            <!-- /.col -->
+                            <div class="col-sm-4 invoice-col">
+                                <br>
+                                <br>
+                                <p style="margin-bottom:0; " th:text="'Order ID: '+${order.getId()}"></p>
+                                <p style="margin-bottom:0; " th:text="'Received address: '+${order.getReceivedAddress()}"></p>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <!-- Table row -->
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="orderProduct:${orderProducts.iterator()}">
+                                        <td th:text="${orderProduct.getId()}">1</td>
+                                        <td th:text="${orderProduct.getName()}">Call of Duty</td>
+                                        <td th:text="'$'+${orderProduct.getPrice()}">455-981-221</td>
+                                        <td th:text="${orderProduct.getQuantity()}">El snort testosterone trophy driving gloves handsome</td>
+                                        <td th:text="'$'+${orderProduct.getQuantity()*orderProduct.getPrice()}"></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <!-- accepted payments column -->
+
+                            <!-- /.col -->
+                            <div class="col-6">
+                                <p class="lead">Payment</p>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody><tr>
+                                            <th style="width:50%">Subtotal:</th>
+                                            <td th:text="'$'+${subtotal}">$250.30</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tax (10%)</th>
+                                            <td th:text="'$'+${tax}">$10.34</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Total:</th>
+                                            <td th:text="'$'+${total}">$265.24</td>
+                                        </tr>
+                                        </tbody></table>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-6">
+                                <div class="card card-light">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Edit Status</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <form method="POST" th:action="@{/admin/order/do-edit}" th:object="${order}">
+                                        <input type="hidden" th:field="*{id}">
+                                        <div class="card-body">
+
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <select th:field="*{status}" class="form-control">
+                                                    <option value="1">New</option>
+                                                    <option value="2">Confirmed</option>
+                                                    <option value="3">Shipping</option>
+                                                    <option value="4">Completed</option>
+                                                    <option value="5">Cancelled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Change status</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <!-- this row will not appear when printing -->
+                        <div class="row no-print">
+                            <div class="col-12">
+                                <a th:href="@{/admin/order/list}"  class="btn btn-default"><i class="fas fa-arrow-alt-circle-left"></i> Back</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.invoice -->
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+</div>

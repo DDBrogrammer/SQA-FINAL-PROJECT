@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{client/layout}"
+>
+
+<div layout:fragment="app-content">
+    <!--====== Product Breadcrumb ======-->
+
+    <!--====== End - Product Breadcrumb ======-->
+
+    <!--====== Section 1 ======-->
+    <div class="u-s-p-y-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section__text-wrap">
+                        <h1 class="section__heading u-c-secondary" th:text="${navType.getName()}+' PRODUCTS'">SHOPPING CART</h1>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="pd-breadcrumb u-s-m-b-30">
+                        <ul class="pd-breadcrumb__list">
+                            <li class="has-separator">
+
+                                <a th:href="@{/client/home}">HOME</a></li>
+                            <li class="is-marked">
+
+                                <a th:href="@{/client/type/product(id=${navType.getId()})}" th:text="${navType.getName()}" > Electronics</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="shop-p" th:if="${listProductByType!=null}" >
+
+                        <div class="shop-p__collection" >
+                            <div class="row is-grid-active">
+                                <div class="col-lg-3 col-md-4 col-sm-6"   th:each="product:${listProductByType.iterator()}">
+                                    <div class="product-m">
+                                        <div class="product-m__thumb">
+
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                               th:href="@{/client/product/detail(id=${product.getId()})}">
+
+                                                <img class="aspect__img"  th:src="'/uploads/'+@{${product.getPicture()}}"
+                                                     alt=""></a>
+                                            <div class="product-m__quick-look">
+
+                                                <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look"
+                                                   data-tooltip="tooltip" data-placement="top" title=""
+                                                   data-original-title="Quick Look"></a></div>
+                                            <div class="product-m__add-cart">
+
+                                                <a class="btn--e-brand" data-modal="modal" th:attr="onclick=|addToCart('${product.getId()}',1)|" >Add
+                                                    to Cart</a></div>
+                                        </div>
+                                        <div class="product-m__content">
+                                            <div class="product-m__category">
+
+                                                <a th:href="@{/client/category/product(id=${product.getCategory().getId()})}"
+                                                   th:text="${product.getCategory().getName()}">Men Clothing</a></div>
+                                            <div class="product-m__name">
+
+                                                <a th:href="@{/client/product/detail(id=${product.getId()})}" th:text="${product.getName()}">New Fashion B Nice Elegant</a></div>
+
+<!--                                            <div class="product-m__price" th:text="'$'+${product.getPrice()-product.getDiscount()}">$125.00</div>-->
+
+                                            <div class="product-m__price">
+                                            <div th:if="${product.getVoucher()!=null}">
+                                                    <div th:text="'$'+${product.getPrice()-(product.getVoucher().getSalePercentage()*product.getPrice())/100}"
+                                                         style="display:inline-block;"> </div>
+                                            </div>
+
+                                            <div th:if="${product.getVoucher()==null}">
+                                                    <div th:text="'$'+${product.getPrice()}"
+                                                         style="display:inline-block;"> </div>
+                                            </div>
+
+                                        </div>
+
+                                            <div class="product-m__hover">
+                                                <div class="product-m__preview-description">
+
+                                                    <span th:text="${product.getDescription()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="u-s-p-y-60" th:if="${totalPage!=0}">
+
+                            <!--====== Pagination ======-->
+                            <ul class="shop-p__pagination" th:if="${totalPage>1}">
+                                <!-- <li class="is-active" >
+
+                                     <a href="shop-grid-full.html">0</a>
+                                 </li>-->
+                                <li class="no-active" th:each="pageNumber:${#numbers.sequence(0, totalPage-1)}"
+                                    th:attr="class=${activePage==pageNumber ? 'is-active' : 'no-active'}"  >
+
+                                    <a th:href="@{/client/type/product(page=${pageNumber},id=${id} )}" th:text="${pageNumber}">  0 </a>
+                                </li>
+
+                                <li th:if="${activePage< totalPage-1}">
+
+                                    <a class="fas fa-angle-right" th:href="@{/client/type/product(page=${activePage+1},id=${id} )}"></a>
+                                </li>
+                            </ul>
+                            <!--====== End - Pagination ======-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section 1 ======-->
+
+
+</div>

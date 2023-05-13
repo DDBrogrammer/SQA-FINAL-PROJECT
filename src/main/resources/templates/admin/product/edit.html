@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <div class="content" >
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/admin/product/list}">Product List</a></li>
+                            <li class="breadcrumb-item active">Edit</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Edit Product</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST" enctype="multipart/form-data" th:action="@{/admin/product/do-edit}" th:object="${product}">
+                <input type="hidden" th:field="*{id}">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" th:field="*{price}" class="form-control" placeholder="Enter price">
+                    </div>
+
+                    <div class="form-group" >
+                        <label>Voucher</label>
+                        <select th:field="*{voucherId}" class="form-control">
+                            <option th:each="voucher:${vouchers}" th:value="${voucher.getId()}" th:text="${voucher.getName()}"></option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea type="text" th:field="*{description}" class="form-control"
+                                  placeholder="Enter description"></textarea>
+                    </div>
+
+                    <div class="form-group" >
+                        <label>Category</label>
+                        <select th:field="*{categoryId}" class="form-control">
+                            <option th:each="category:${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Picture</label>
+                        <input type="file" name="img"  class="form-control" placeholder="Select Image">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" th:field="*{quantity}" class="form-control" placeholder="Enter number">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select th:field="*{status}" class="form-control">
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
+        <!-- /.container-fluid -->
+    </div>
+
+
+</div>
+

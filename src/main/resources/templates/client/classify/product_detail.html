@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{client/layout}"
+>
+
+<div layout:fragment="app-content">
+
+    <div class="u-s-p-t-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <!--====== Product Breadcrumb ======-->
+                    <div class="pd-breadcrumb u-s-m-b-30">
+                        <ul class="pd-breadcrumb__list">
+                            <li class="has-separator">
+
+                                <a th:href="@{/client/home}">Home</a></li>
+                            <li class="has-separator">
+
+                                <a th:href="@{/client/type/product(id=${product.getCategory().getProductType().getId()})}" th:text="${product.getCategory().getProductType().getName()}" > Electronics</a></li>
+
+                            <li class="is-marked">
+
+                                <a th:href="@{/client/category/product(id=${product.getCategory().getId()})}"  th:text="${product.getCategory().getName()}"></a></li>
+                        </ul>
+                    </div>
+                    <!--====== End - Product Breadcrumb ======-->
+
+
+                    <!--====== Product Detail Zoom ======-->
+                    <div class="pd u-s-m-b-30">
+                        <div class="pd-wrap">
+                            <div id="pd-o-initiate" class="slick-initialized slick-slider">
+                                <div class="slick-list draggable">
+                                    <div class="slick-track" style="opacity: 1; width: 2225px;">
+
+                                        <div class="pd-o-img-wrap slick-slide slick-current slick-active" data-src="images/product/product-d-1.jpg" data-slick-index="0" aria-hidden="false" style="width: 459px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0">
+
+                                            <img class="u-img-fluid" th:src="'/uploads/'+@{${product.getPicture()}}" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--<span class="pd-text">Click for larger zoom</span>-->
+                        </div>
+
+
+                        <!--<div class="u-s-m-t-15">
+                            <div>
+                                <div id="pd-o-thumbnail" class="slick-initialized slick-slider"><div class="pt-prev slick-arrow" aria-disabled="false" style=""><i class="fas fa-angle-left"></i></div>
+                                    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 560px; transform: translate3d(-112px, 0px, 0px);"><div class="slick-slide" data-slick-index="0" aria-hidden="true" style="width: 112px;" tabindex="-1">
+
+                                        <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div><div class="slick-slide" data-slick-index="1" aria-hidden="true" style="width: 112px;" tabindex="-1">
+
+                                        <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div><div class="slick-slide slick-current slick-active" data-slick-index="2" aria-hidden="false" style="width: 112px;" tabindex="0">
+
+                                        <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div><div class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 112px;" tabindex="0">
+
+                                        <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div><div class="slick-slide slick-active" data-slick-index="4" aria-hidden="false" style="width: 112px;" tabindex="0">
+
+                                        <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div></div></div>
+
+
+
+
+                                    <div class="pt-next slick-arrow slick-disabled" style="" aria-disabled="true"><i class="fas fa-angle-right"></i></div></div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <!--====== End - Product Detail Zoom ======-->
+                </div>
+                <div class="col-lg-7">
+
+                    <!--====== Product Right Side Details ======-->
+                    <div class="pd-detail">
+                        <div>
+
+                            <span class="pd-detail__name"
+                                  th:text="${product.getName()}"></span></div>
+                        <div>
+                            <div class="pd-detail__inline">
+                                <div th:if="${product.getVoucher()==null}" >
+                                <span class="pd-detail__price"
+                                      th:text="'$'+${product.getPrice()}">$6.99</span>
+                               </div>
+                                <div th:if="${product.getVoucher()!=null}">
+                                    <span class="pd-detail__price"
+                                          th:text="'$'+${product.getPrice()-(product.getVoucher().getSalePercentage()*product.getPrice())/100}">$6.99</span>
+
+                                    <del class="pd-detail__del" th:if="${product.getVoucher().getSalePercentage()>0}"
+                                          th:text="'$'+${product.getPrice()}"
+                                          style="display:inline-block;"> </del>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="u-s-m-b-15">
+                            <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star-half-alt"></i>
+
+                                <span class="pd-detail__review u-s-m-l-4">
+
+                                            <a data-click-scroll="#view-review">23 Reviews</a></span></div>
+                        </div>
+                        <!--  <div class="u-s-m-b-15">
+                              <div class="pd-detail__inline">
+
+                                  <span class="pd-detail__stock">200 in stock</span>
+
+                                  <span class="pd-detail__left">Only 2 left</span></div>
+                          </div>-->
+                        <div class="u-s-m-b-15">
+
+                            <span class="pd-detail__preview-desc" th:text="${product.getDescription()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+                        </div>
+                        <div class="u-s-m-b-15">
+                            <div class="pd-detail__inline">
+
+                                        <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+
+                                            <a href="signin.html">Add to Wishlist</a>
+
+                                            <span class="pd-detail__click-count">(222)</span></span></div>
+                        </div>
+                        <div class="u-s-m-b-15">
+                            <div class="pd-detail__inline">
+
+                                        <span class="pd-detail__click-wrap"><i class="far fa-envelope u-s-m-r-6"></i>
+
+                                            <a href="signin.html">Email me When the price drops</a>
+
+                                            <span class="pd-detail__click-count">(20)</span></span></div>
+                        </div>
+                        <div class="u-s-m-b-15">
+                            <ul class="pd-social-list">
+                                <li>
+
+                                    <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li>
+
+                                    <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li>
+
+                                    <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li>
+
+                                    <a class="s-wa--color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                <li>
+
+                                    <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="u-s-m-b-15">
+                            <div class="pd-detail__form">
+                                <div class="pd-detail-inline-2">
+                                    <div class="u-s-m-b-15">
+
+                                        <!--====== Input Counter ======-->
+                                        <div class="input-counter">
+
+                                            <span class="input-counter__minus fas fa-minus"></span>
+
+                                            <input class="input-counter__text input-counter--text-primary-style"
+                                                   th:data-id="${product.getId()}"     type="number" value="1" data-min="1" data-max="1000" name="productQuantity">
+
+                                            <span class="input-counter__plus fas fa-plus"></span></div>
+                                        <!--====== End - Input Counter ======-->
+                                    </div>
+                                    <div class="u-s-m-b-15">
+
+                                        <button class="btn btn--e-brand-b-2" onclick=addToCartWithQuantity()>Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="u-s-m-b-15">
+
+                            <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
+                            <ul class="pd-detail__policy-list">
+                                <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                    <span>Buyer Protection.</span></li>
+                                <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                    <span>Full Refund if you don't receive your order.</span></li>
+                                <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                    <span>Returns accepted if product not as described.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--====== End - Product Right Side Details ======-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

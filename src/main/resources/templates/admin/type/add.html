@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://https://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}"
+>
+
+<div layout:fragment="content-wrapper">
+    <div class="content">
+        <div th:if="${failed!=null}" class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+            <div th:text="${failed}"></div>
+        </div>
+
+        <div th:if="${success!=null}" class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-check"></i> Alert!</h5>
+            <div th:text="${success}"></div>
+        </div>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Type </h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/admin/home/}">Home</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/admin/type/list}">Type list</a></li>
+                            <li class="breadcrumb-item active">Add</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <form method="POST" th:action="@{/admin/type/do-add}" th:object="${type}">
+            <div class="card-body">
+
+
+                <div class="form-group">
+                    <label>Name </label>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Name">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select th:field="*{status}" class="form-control">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+
+
+
+
+        <!-- /.container-fluid -->
+    </div>
+
+
+</div>
+
+
